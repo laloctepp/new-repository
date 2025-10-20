@@ -1,5 +1,13 @@
 #include <iostream>
 
+void remove (int ** m, size_t rows)
+{
+	for (size_t i=0; i < rows; ++i) {
+		delete[] m[i];
+	}
+	delete[] m;
+}
+
 int ** create (size_t r, size_t c)
 {
 	int ** result = new int * [r];
@@ -13,14 +21,7 @@ int ** create (size_t r, size_t c)
 		remove (result, i);
 		throw;
 	}
-}
-
-void remove (int ** m, size_t rows)
-{
-	for (size_t i=0; i < rows; ++i) {
-		delete[] m[i];
-	}
-	delete[] m;
+	return result;
 }
 
 void input (int ** m, size_t rows, size_t cols) 
@@ -32,10 +33,15 @@ void input (int ** m, size_t rows, size_t cols)
 	}
 }
 
-void output (const int * const * m, size_t rows, size_t cols)
-{
-	std::cout << rows << " " << cols; 
-	//
+void output (const int * const * m, size_t rows, size_t cols) {
+	std::cout << rows << " " << cols << "\n"; 
+	for (size_t i=0; i < rows; ++i) {
+		std::cout << m[i][0];
+		for (size_t j=1; j < cols; ++j) {
+			std::cout << " " << m[i][j]; 
+		}
+		std::cout << "\n";
+	}
 }
 
 int main()
@@ -45,14 +51,18 @@ int main()
 	if (!std::cin) {
 		return 1;
 	}
-	int ** m = create (rows, cols);
-	input (m, rows, cols);
-	if (!std::cin) {
-		remove (m, rows, cols);
-		return 1;
+	try {
+		int ** m = create (rows, cols);
+		input (m, rows, cols);
+	    if (!std::cin) {
+			remove (m, rows);
+			return 1;
+		}
+		output (m, rows, cols);
+		remove (m, rows);
+		std::cout << "\n";
 	}
-	output (m, rows, cols);
-	remove (m, rows);
-	std::cout << rows << " " << cols;
-	std::cout << "\n";
+	catch (...) {
+		return 2;
+	}
 }

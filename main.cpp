@@ -1,8 +1,18 @@
 #include <iostream>
 
-int ** create (size_t rows, size_t cols)
+int ** create (size_t r, size_t c)
 {
-	int ** result = nullptr;
+	int ** result = new int * [r];
+	size_t i = 0;
+	try {
+		for (; i < r; ++i) {
+			m[i] = new int[c];
+		}
+	}
+	catch (...) {
+		remove (result, i);
+		throw;
+	}
 }
 
 void remove (int ** m, size_t rows)

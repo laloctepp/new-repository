@@ -7,7 +7,10 @@ int ** create (size_t rows, size_t cols,)
 
 void remove (int ** m, size_t rows, size_t cols)
 {
-	
+	for (size_t i=0; i < rows; ++i) {
+		delete[] m[i];
+	}
+	delete[] m;
 }
 
 void input (int ** m, size_t rows, size_t cols) 

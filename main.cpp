@@ -1,6 +1,6 @@
 #include <iostream>
 
-int ** create (size_t rows, size_t cols,)
+int ** create (size_t rows, size_t cols)
 {
 	int ** result = nullptr;
 }
@@ -15,8 +15,8 @@ void remove (int ** m, size_t rows)
 
 void input (int ** m, size_t rows, size_t cols) 
 {
-	for (size-t i=0; i < rows && (std::cin); ++i) {
-		for (size-t j=0; j < cols && (std::cin); ++j) {
+	for (size_t i=0; i < rows && (std::cin); ++i) {
+		for (size_t j=0; j < cols && (std::cin); ++j) {
 			std::cin >> m[i][j];
 		}
 	}

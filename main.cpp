@@ -6,7 +6,7 @@ int ** create (size_t r, size_t c)
 	size_t i = 0;
 	try {
 		for (; i < r; ++i) {
-			m[i] = new int[c];
+			result[i] = new int[c];
 		}
 	}
 	catch (...) {
